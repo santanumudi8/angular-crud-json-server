@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <h2 style="color: white;">Properties</h2>
         <div class="d-flex">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Listing</button>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="clickAddProperty()">Add Listing</button>
             <button class="btn btn-danger mx-3" routerLink="/login">Logout</button>
         </div>
     </div>
@@ -27,16 +27,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>dummy data</td>
-            <td>dummy data</td>
-            <td>dummy data</td>
-            <td>dummy data</td>
+        <tr *ngFor="let data of allProperty">
+            <td>{{data.id}}</td>
+            <td>{{data.ptitle}}</td>
+            <td>{{data.pprice | currency}}</td>
+            <td>{{data.plocation}}</td>
+            <td>{{data.pdetails}}</td>
             <td>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
                 <button class="btn btn-success mx-2">View</button>
-                <button class="btn btn-danger mx-2">Delete</button>
+                <button class="btn btn-danger mx-2" (click)="deleteProp(data)">Delete</button>
             </td>
         </tr>
     </tbody>
@@ -51,29 +51,29 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form [formGroup]="formValue">
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Property Title</label>
-                        <input type="text" class="form-control" placeholder="ABC property">
+                        <input formControlName="ptitle" type="text" class="form-control" placeholder="ABC property">
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput2" class="form-label">Property price</label>
-                        <input type="text" class="form-control" placeholder="999.99">
+                        <input formControlName="pprice" type="text" class="form-control" placeholder="999.99">
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput2" class="form-label">Property Location</label>
-                        <input type="text" class="form-control" placeholder="WB">
+                        <input formControlName="plocation" type="text" class="form-control" placeholder="WB">
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput2" class="form-label">Property Details</label>
-                        <input type="text" class="form-control" placeholder="2bhk">
+                        <input formControlName="pdetails" type="text" class="form-control" placeholder="2bhk">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add Listing</button>
-                <button type="button" class="btn btn-warning">Update Listing</button>
+                <button type="button" id="clear" class="btn btn-secondary" data-bs-dismiss="modal">Clear</button>
+                <button type="button" *ngIf="showAdd" class="btn btn-primary" (click)="addProp()">Add Listing</button>
+                <button type="button" *ngIf="showEdit" class="btn btn-warning">Update Listing</button>
             </div>
         </div>
     </div>
