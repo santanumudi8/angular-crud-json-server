@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "ptitle": "Sanu Properties",
+      "pprice": "999.99",
+      "plocation":"West Bengal",
+      "pdetails":"Plot available for 2 room"
+    }
+  ],
+  "signup": [
+    {
+      "id": 1,
+      "name": "sanu",
+      "email": "sanu@gmail.com",
+      "mobile":"10101010",
+      "password":"santanu@123"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
